@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IKIGAIプロジェクト® ｜ よく眠り、よく生きる — こどもヨーガ</title>
+<meta name="description" content="IKIGAIプロジェクト®は、高松市を拠点にヨーガとマインドフルネスを通して子どもから大人まで一人ひとりのウェルビーイングを育む地域実践プロジェクトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sage: #7d9b7a;
+    --sage-light: #b4c9ac;
+    --sage-dark: #4f6d4c;
+    --cream: #faf6ef;
+    --warm: #f3ecdd;
+    --gold: #c39a4b;
+    --gold-light: #e8d6a8;
+    --ink: #2e2c28;
+    --muted: #6b665c;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+
+  a { color: inherit; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 200;
+    background: rgba(250,246,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(79,109,76,0.12);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto; padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.05rem; color: var(--sage-dark); letter-spacing: 0.03em; }
+  .logo span { color: var(--gold); }
+  nav ul { display: flex; list-style: none; gap: 30px; }
+  nav ul a { text-decoration: none; color: var(--muted); font-size: 0.84rem; letter-spacing: 0.02em; transition: color 0.2s; }
+  nav ul a:hover { color: var(--sage-dark); }
+  .nav-cta {
+    background: var(--sage-dark); color: var(--white) !important;
+    padding: 8px 20px; border-radius: 24px; font-weight: 700 !important;
+    white-space: nowrap;
+  }
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--sage-dark); cursor: pointer; }
+
+  @media (max-width: 860px) {
+    nav ul.nav-links {
+      position: fixed; top: 60px; right: -100%; width: 78%; max-width: 320px; height: calc(100vh - 60px);
+      background: var(--white); flex-direction: column; padding: 34px 30px; gap: 26px;
+      transition: right 0.3s ease; box-shadow: -8px 0 24px rgba(0,0,0,0.06);
+    }
+    nav ul.nav-links.open { right: 0; }
+    .nav-toggle { display: block; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 24px 80px; position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 78% 30%, rgba(180,201,172,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 45% 45% at 12% 78%, rgba(195,154,75,0.16) 0%, transparent 70%);
+  }
+  .hero-bg::after {
+    content: '和'; position: absolute; right: -40px; top: 10%; font-family: 'Noto Serif JP', serif;
+    font-size: 26rem; font-weight: 900; color: rgba(125,155,122,0.06); line-height: 1; user-select: none;
+  }
+  .hero-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold-light); color: #7a5f28;
+    padding: 7px 18px; border-radius: 22px;
+    font-size: 0.78rem; font-weight: 700; margin-bottom: 26px; letter-spacing: 0.06em;
+  }
+  .hero-tag::before { content: '✦'; color: var(--gold); }
+  h1.hero-title {
+    font-size: 3rem; font-weight: 900; line-height: 1.5; margin-bottom: 20px; color: var(--ink);
+  }
+  h1.hero-title em { font-style: normal; color: var(--sage-dark); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto 12px;
+  }
+  .hero-quote {
+    margin-top: 30px; font-family: 'Noto Serif JP', serif; font-size: 1.1rem;
+    color: var(--sage-dark); font-weight: 600; letter-spacing: 0.02em;
+  }
+  .hero-quote small { display: block; font-family: 'Noto Sans JP', sans-serif; font-weight: 400; font-size: 0.82rem; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .hero-cta { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 15px 34px; border-radius: 28px;
+    font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary { background: var(--sage-dark); color: var(--white); box-shadow: 0 10px 26px rgba(79,109,76,0.28); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(79,109,76,0.35); }
+  .btn-outline { background: transparent; color: var(--sage-dark); border: 1.5px solid var(--sage-dark); }
+  .btn-outline:hover { background: rgba(79,109,76,0.06); }
+
+  .credentials {
+    margin-top: 46px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .credentials span {
+    background: var(--white); border: 1px solid rgba(79,109,76,0.14);
+    padding: 7px 16px; border-radius: 18px; font-size: 0.76rem; color: var(--muted);
+  }
+
+  /* ─── SECTION GENERIC ─── */
+  section { padding: 96px 24px; position: relative; }
+  .section-tag {
+    display: inline-block; font-size: 0.78rem; font-weight: 700; color: var(--gold);
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: var(--ink); line-height: 1.5;
+  }
+  .section-lead { color: var(--muted); font-size: 1rem; max-width: 680px; margin-bottom: 50px; }
+  .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+  /* ─── ABOUT / STORY ─── */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1080px; margin: 0 auto;
+  }
+  .about-quote-box {
+    background: var(--cream); border-left: 4px solid var(--gold);
+    padding: 30px 32px; border-radius: 4px; font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem; color: var(--sage-dark); font-weight: 600; line-height: 1.9; margin-bottom: 26px;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 0.96rem; }
+  .about-panel {
+    background: linear-gradient(150deg, var(--sage-light), var(--sage));
+    border-radius: 20px; padding: 46px 36px; color: var(--white);
+    box-shadow: 0 24px 50px rgba(79,109,76,0.2);
+  }
+  .about-panel h3 { font-size: 1.3rem; margin-bottom: 18px; }
+  .about-panel p { font-size: 0.92rem; opacity: 0.95; margin-bottom: 14px; }
+  .about-panel ul { list-style: none; margin-top: 20px; }
+  .about-panel li { font-size: 0.88rem; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.2); }
+  .about-panel li:first-child { border-top: none; }
+
+  /* ─── KODOMO YOGA ─── */
+  .yoga-explain { background: var(--warm); }
+  .yoga-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: 1080px; margin: 0 auto;
+  }
+  .yoga-card {
+    background: var(--white); border-radius: 16px; padding: 32px 26px;
+    box-shadow: 0 10px 28px rgba(46,44,40,0.05); text-align: center;
+  }
+  .yoga-card .icon {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--gold-light);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+    font-size: 1.5rem;
+  }
+  .yoga-card h4 { font-size: 1rem; margin-bottom: 10px; color: var(--sage-dark); }
+  .yoga-card p { font-size: 0.86rem; color: var(--muted); }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy { background: var(--white); }
+  .philosophy-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1080px; margin: 0 auto;
+  }
+  .phil-card {
+    padding: 28px 22px; border-radius: 14px; background: var(--cream);
+    border: 1px solid rgba(79,109,76,0.1);
+  }
+  .phil-card .num { font-family: 'Noto Serif JP', serif; font-size: 1.6rem; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .phil-card h4 { font-size: 0.94rem; color: var(--sage-dark); margin-bottom: 8px; }
+  .phil-card p { font-size: 0.82rem; color: var(--muted); }
+
+  /* ─── FIELDS ─── */
+  .fields { background: var(--sage-dark); color: var(--white); }
+  .fields .section-tag { color: var(--gold-light); }
+  .fields .section-title, .fields .section-lead { color: var(--white); }
+  .fields .section-lead { opacity: 0.85; }
+  .field-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto;
+  }
+  .field-item {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px; padding: 26px 20px; text-align: center; font-size: 0.9rem; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .field-item:hover { background: rgba(255,255,255,0.15); }
+
+  /* ─── PROGRAM ─── */
+  .program { background: var(--cream); }
+  .program-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1080px; margin: 0 auto;
+  }
+  .program-card {
+    background: var(--white); border-radius: 16px; padding: 30px 24px;
+    box-shadow: 0 10px 26px rgba(46,44,40,0.05); border-top: 4px solid var(--gold);
+  }
+  .program-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; color: var(--sage-dark);
+    background: var(--warm); padding: 4px 12px; border-radius: 12px; margin-bottom: 12px;
+  }
+  .program-card h4 { color: var(--sage-dark); font-size: 1rem; margin-bottom: 4px; }
+  .program-card .catch { font-size: 0.78rem; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .program-card p { font-size: 0.85rem; color: var(--muted); }
+
+  .training-panel {
+    max-width: 1080px; margin: 40px auto 0; background: linear-gradient(150deg, var(--sage-dark), var(--sage));
+    border-radius: 20px; padding: 44px 40px; color: var(--white); box-shadow: 0 24px 50px rgba(79,109,76,0.2);
+  }
+  .training-panel .program-badge { background: rgba(255,255,255,0.16); color: var(--gold-light); }
+  .training-panel h3 { font-size: 1.2rem; margin-bottom: 6px; }
+  .training-panel .catch { display: block; font-size: 0.82rem; color: var(--gold-light); font-weight: 700; margin-bottom: 16px; }
+  .training-panel p { font-size: 0.9rem; opacity: 0.95; margin-bottom: 18px; max-width: 680px; }
+  .training-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .training-grid div {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 12px; padding: 16px 18px; font-size: 0.85rem;
+  }
+  @media (max-width: 640px) { .training-grid { grid-template-columns: 1fr; } }
+
+  .training-shift { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .training-shift div {
+    font-size: 0.86rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .training-shift .before { opacity: 0.75; }
+  .training-shift .arrow { color: var(--gold-light); font-weight: 700; }
+  .training-shift .after { font-weight: 700; color: var(--gold-light); }
+
+  /* ─── PROFILE ─── */
+  .profile { background: var(--white); }
+  .profile-grid {
+    display: grid; grid-template-columns: 300px 1fr; gap: 50px; max-width: 1080px; margin: 0 auto; align-items: start;
+  }
+  .profile-photo {
+    width: 100%; aspect-ratio: 3/4; border-radius: 18px;
+    background: linear-gradient(150deg, var(--sage-light), var(--warm));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--sage-dark); font-size: 0.85rem; text-align: center; padding: 20px;
+    box-shadow: 0 20px 44px rgba(79,109,76,0.18);
+  }
+  .profile-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
+  .profile-role { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 22px; }
+  .profile-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .profile-badges span {
+    background: var(--warm); color: var(--sage-dark); padding: 6px 14px;
+    border-radius: 16px; font-size: 0.76rem; font-weight: 600;
+  }
+  .profile p { color: var(--muted); font-size: 0.94rem; margin-bottom: 14px; }
+
+  /* ─── CONTACT ─── */
+  .contact { background: linear-gradient(150deg, var(--sage-dark), var(--sage)); color: var(--white); text-align: center; }
+  .contact .section-tag { color: var(--gold-light); }
+  .contact h2 { color: var(--white); font-size: 2rem; margin-bottom: 16px; }
+  .contact p.lead { max-width: 560px; margin: 0 auto 36px; opacity: 0.9; }
+  .contact .hero-cta { margin-top: 0; }
+  .contact .btn-primary { background: var(--white); color: var(--sage-dark); }
+  .contact .btn-outline { border-color: rgba(255,255,255,0.6); color: var(--white); }
+  .contact .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--ink); color: rgba(255,255,255,0.55); padding: 40px 24px; text-align: center; font-size: 0.8rem; }
+  footer .logo { color: var(--gold-light); margin-bottom: 10px; display: block; }
+
+  @media (max-width: 860px) {
+    h1.hero-title { font-size: 2.1rem; }
+    .about-grid, .profile-grid { grid-template-columns: 1fr; }
+    .yoga-grid, .philosophy-grid, .field-grid { grid-template-columns: repeat(2, 1fr); }
+    .profile-photo { max-width: 260px; margin: 0 auto; }
+  }
+  @media (max-width: 520px) {
+    .yoga-grid, .philosophy-grid, .field-grid { grid-template-columns: 1fr; }
+    section { padding: 70px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">IKIGAI<span>プロジェクト®</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">プロジェクトについて</a></li>
+      <li><a href="#kodomoyoga">こどもヨーガとは</a></li>
+      <li><a href="#field">フィールド</a></li>
+      <li><a href="#program">プログラム</a></li>
+      <li><a href="#profile">プロフィール</a></li>
+      <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">よく眠り、よく生きる</div>
+    <h1 class="hero-title">お腹の中から最期の瞬間まで、<br><em>生きる力</em>を育む場所</h1>
+    <p class="hero-sub">IKIGAIプロジェクト®は、高松市を拠点に、ヨーガとマインドフルネスを通して子どもと大人、多世代のウェルビーイングの向上を目指す地域実践プロジェクトです。</p>
+    <div class="hero-quote">―心の中にある力を信じて―<small>May the force be with you.</small></div>
+    <div class="hero-cta">
+      <a href="#program" class="btn btn-primary">プログラムを見る</a>
+      <a href="#contact" class="btn btn-outline">お問い合わせ</a>
+    </div>
+    <div class="credentials">
+      <span>こどもヨーガ専門士®上級</span>
+      <span>日本ヨーガ道友協会認定講師</span>
+      <span>幼稚園教諭・小学校教員免許</span>
+      <span>MBSR・MBCT修了</span>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-tag">Our Story</span>
+      <div class="about-quote-box">「なんのために生きてるの？」<br>幼き息子の、その問いかけが原点でした。</div>
+      <div class="about-text">
+        <p>息子がイギリスと日本で初等教育を受ける中で、子どもを取り巻く社会や育児環境の違いを実感。子育てに悩んでいた頃、息子から投げかけられた「なんのために生きているの？」という一言をきっかけに、伊藤華野先生に師事してこどもヨーガを学び始めました。</p>
+        <p>「子ども真ん中」の社会・地域環境づくりを最優先に掲げ、高松市周辺6拠点や各地のコミュニティで、子どもの生きる力を育む「こどもヨーガ」を中心に展開しています。</p>
+        <p>単にポーズをとるだけでなく、保育・教育・福祉・心理の学問的裏付けに基づき、スマホやゲームなどの刺激にあふれる現代において、子どもが「自分を感じる大切な時間」を提供しています。</p>
+      </div>
+    </div>
+    <div class="about-panel">
+      <h3>IKIGAIプロジェクトについて</h3>
+      <p>高松市内の寺院、放課後児童クラブ、子育て支援施設、地域コミュニティなどを拠点に、ヨーガとマインドフルネスを通して、お腹の中から最期の瞬間まで、一人ひとりのウェルビーイングの向上を目指しています。</p>
+      <p>生涯発達の視点を基盤に、発達心理学やトラウマインフォームドケア（TIC）の考え方を取り入れ、ストレスの軽減、睡眠の質の向上、自己調整力の育成を支援します。</p>
+      <ul>
+        <li>子どもだけでなく、保護者や教育・介護・福祉・医療に携わる「人的環境」への支援も大切に</li>
+        <li>多世代が安心して集い、互いに支え合える地域コミュニティづくり</li>
+        <li>一人ひとりが尊厳を大切にしながら、自分らしい人生を主体的にデザイン</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="yoga-explain" id="kodomoyoga">
+  <div class="wrap">
+    <span class="section-tag center" style="display:block; text-align:center;">Kodomo Yoga</span>
+    <h2 class="section-title center">こどもヨーガとは</h2>
+    <p class="section-lead center">こどもと、こどもを取り巻く大人へのマインドフルネスを尊重したヨーガです。単にポーズをとるだけのヨガではなく、保育・教育・福祉・心理などの学問的な裏付けをベースに、子どもの健全な心身の育成を目指したプログラムをお届けしています。</p>
+    <div class="yoga-grid">
+      <div class="yoga-card">
+        <div class="icon">🧒</div>
+        <h4>子ども向け</h4>
+        <p>こどもヨーガ・おやこヨーガを通して、子どもが「自分を感じる」時間と生きる力を育みます。</p>
+      </div>
+      <div class="yoga-card">
+        <div class="icon">🧘</div>
+        <h4>大人向け</h4>
+        <p>マインドフルネスヨーガやいすヨーガで、大人自身の心身も整えます。</p>
+      </div>
+      <div class="yoga-card">
+        <div class="icon">🤝</div>
+        <h4>子どもを取り巻く大人へ</h4>
+        <p>保護者や教育・福祉関係者など、子どもを支える「人的環境」への研修も行います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <span class="section-tag center" style="display:block; text-align:center;">Philosophy</span>
+    <h2 class="section-title center">バイオサイコソーシャルな視点</h2>
+    <p class="section-lead center">発達心理学やトラウマインフォームドケアに配慮し、身体・こころ・社会とのつながりを丸ごと見つめ、人生を通した成長と回復をサポートします。</p>
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <div class="num">01</div>
+        <h4>生涯発達</h4>
+        <p>お腹の中から最期の瞬間まで、一人ひとりの発達段階に寄り添います。</p>
+      </div>
+      <div class="phil-card">
+        <div class="num">02</div>
+        <h4>発達心理学</h4>
+        <p>学問的な裏付けに基づき、健全な心身の育成を目指します。</p>
+      </div>
+      <div class="phil-card">
+        <div class="num">03</div>
+        <h4>トラウマインフォームドケア</h4>
+        <p>安心・安全を土台に、一人ひとりの背景に配慮した関わりを大切にします。</p>
+      </div>
+      <div class="phil-card">
+        <div class="num">04</div>
+        <h4>人的環境への支援</h4>
+        <p>子育て世代や教育・介護・福祉・医療関係者自身が心身を整えるための場も提供します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fields" id="field">
+  <div class="wrap">
+    <span class="section-tag center" style="display:block; text-align:center;">Field</span>
+    <h2 class="section-title center">活動フィールド</h2>
+    <p class="section-lead center">高松市周辺6拠点をはじめ、多様な現場でこどもヨーガとマインドフルネスを届けています。</p>
+    <div class="field-grid">
+      <div class="field-item">少年院</div>
+      <div class="field-item">放課後児童健全育成事業（学童）</div>
+      <div class="field-item">フィットネス</div>
+      <div class="field-item">カルチャーセンター</div>
+      <div class="field-item">お寺</div>
+      <div class="field-item">地域コミュニティ</div>
+    </div>
+  </div>
+</section>
+
+<section class="program" id="program">
+  <div class="wrap">
+    <span class="section-tag center" style="display:block; text-align:center;">Program</span>
+    <h2 class="section-title center">プログラム</h2>
+    <p class="section-lead center">子ども向け、大人向け、そして子どもを取り巻く大人へ。それぞれの世代・目的に合わせたヨーガとマインドフルネスをご用意しています。</p>
+    <div class="program-grid">
+      <div class="program-card">
+        <span class="program-badge">子ども向け</span>
+        <h4>こどもヨーガ（おやこヨーガを含む）</h4>
+        <p>発達段階に応じた内容で、子どもが「自分を感じる」時間と生きる力を育みます。</p>
+      </div>
+      <div class="program-card">
+        <span class="program-badge">大人向け</span>
+        <h4>いすヨーガ</h4>
+        <p class="catch">「姿勢が変われば未来が変わる」</p>
+        <p>一人ひとりの悩みに応じて無理なく身体を整え、ずっと歩けるからだへ。椅子に座ったまま行えます。</p>
+      </div>
+      <div class="program-card">
+        <span class="program-badge">大人向け</span>
+        <h4>マインドフルネスヨーガ</h4>
+        <p>心身を整えるマインドフルネスを取り入れたヨーガです。</p>
+      </div>
+      <div class="program-card">
+        <span class="program-badge">教育・介護・福祉・医療へ</span>
+        <h4>研修・ワークショップ</h4>
+        <p>教育・介護・福祉・医療関係者や保護者向けに、人的環境支援としての理論と実践を学べる研修を行っています。</p>
+      </div>
+    </div>
+
+    <div class="training-panel">
+      <span class="program-badge">教育・介護・福祉・医療関係者へ</span>
+      <h3>研修：人的環境支援</h3>
+      <span class="catch">MBPBS（Mindfulness-Based Positive Behavior Support）</span>
+      <p>子どもを取り巻く教育関係者にとどまらず、介護・福祉・医療の現場で人を支える方々へ向けた研修です。マインドフルネスとトラウマインフォームドケアの眼差しから、支援する側の組織に与える影響を見つめ直します。「気づき」から「立ち止まった対応」へ。五感を活かし、心・身体・社会のつながりを育むウェルネスプログラムとして、自ら制御し選択できる力を育みます。</p>
+      <div class="training-grid">
+        <div>気づき → 立ち止まった対応へ</div>
+        <div>後悔や罪悪感の予防</div>
+        <div>感情労働による離職予防</div>
+        <div>支援される側への影響</div>
+        <div>燃え尽き予防（バーンアウト）</div>
+        <div>自ら制御し選択できる</div>
+      </div>
+      <div class="training-shift">
+        <div><span class="before">機能的側面</span><span class="arrow">→</span><span class="after">主体的側面</span></div>
+        <div><span class="before">予測可能な経験</span><span class="arrow">→</span><span class="after">新鮮な経験</span></div>
+        <div><span class="before">エクササイズ</span><span class="arrow">→</span><span class="after">アクティビティ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="profile" id="profile">
+  <div class="wrap profile-grid">
+    <div class="profile-photo">代表者写真</div>
+    <div>
+      <span class="section-tag">Profile</span>
+      <div class="profile-name">IKIGAIプロジェクト® 代表</div>
+      <div class="profile-role">よく眠り、よく生きる</div>
+      <div class="profile-badges">
+        <span>こどもヨーガ専門士®上級</span>
+        <span>日本ヨーガ道友協会認定講師</span>
+        <span>幼稚園教諭免許</span>
+        <span>小学校教員免許</span>
+        <span>MBSR修了</span>
+        <span>MBCT修了</span>
+      </div>
+      <p>息子がイギリスと日本で初等教育を受ける中で、子どもを取り巻く社会や育児環境の違いを実感。子育てに悩んでいた頃、息子から投げかけられた「なんのために生きているの？」という一言をきっかけに、伊藤華野先生に師事してこどもヨーガを学び始めました。</p>
+      <p>「子ども真ん中」の社会・地域環境づくりを最優先に掲げ、高松市周辺6拠点や各地のコミュニティで、子どもの生きる力を育む「こどもヨーガ」を中心に展開。単にポーズをとるだけでなく、保育・教育・福祉・心理の学問的裏付けに基づき、子どもが「自分を感じる大切な時間」を提供しています。</p>
+      <p>また、子どもを温かく支える最大の「人的環境」である大人の存在にも着目し、子育て世代や教育・介護・福祉・医療関係者が心身を整えるためのおやこヨーガや大人向けプログラム、人的環境支援としての研修も広く手がけています。</p>
+      <p>発達心理学やトラウマインフォームドケアに配慮し、身体・こころ・社会とのつながりを丸ごと見つめる「バイオサイコソーシャル」な視点を大切に、人生を通した成長と回復をサポート。多世代が集う場で一人ひとりの生きる力を育んでいます。</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="section-tag">Contact</span>
+    <h2>お気軽にお問い合わせください</h2>
+    <p class="lead">こどもヨーガ・おやこヨーガの体験、研修・ワークショップのご依頼、その他ご相談はこちらから承っております。</p>
+    <div class="hero-cta">
+      <a href="mailto:info@example.com" class="btn btn-primary">メールで問い合わせる</a>
+      <a href="#" class="btn btn-outline">Instagramを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo serif">IKIGAIプロジェクト®</span>
+  &copy; 2026 IKIGAI Project. All rights reserved.
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
